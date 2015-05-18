@@ -1,14 +1,15 @@
 {
   "version": "1.0.1",
-  "description": "Super-agent driven library for testing HTTP servers",
   "name": "@iondrive/supertest",
+  "description": "Super-agent driven library for testing HTTP servers, now with JWT and promise support",
   "main": "index.js",
   "scripts": {
     "test": "make test"
   },
   "dependencies": {
-    "superagent": "~1.2.0",
-    "methods": "1.x"
+    "bluebird": "^2.9.25",
+    "methods": "1.x",
+    "superagent": "~1.2.0"
   },
   "devDependencies": {
     "express": "3.20.2",

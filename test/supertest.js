@@ -19,7 +19,27 @@ describe('request(url)', function(){
       var url = 'http://localhost:' + s.address().port;
       request(url)
       .get('/')
-      .expect("hello", done);
+      .expect('hello', done);
+    });
+  });
+
+  describe('.then()', function() {
+    it('should call end and return a promise', function(done) {
+      var app = express();
+
+      app.get('/', function(req, res){
+        res.send('hello');
+      });
+
+      var s = app.listen(function(){
+        var url = 'http://localhost:' + s.address().port;
+        request(url)
+        .get('/')
+        .then(function (res) {
+          res.text.should.eql('hello');
+        })
+        .then(done);
+      });
     });
   });
 
@@ -658,7 +678,7 @@ describe('request(app)', function(){
   });
 });
 
-describe('request.agent(app)', function(){
+describe('request.agent(app) cookie support', function(){
   var app = express();
 
   app.use(express.cookieParser());
@@ -685,6 +705,37 @@ describe('request.agent(app)', function(){
     agent
     .get('/return')
     .expect('hey', done);
+  });
+});
+
+describe('request.agent(app) jwt support', function(){
+  var app = express();
+
+  app.use(express.cookieParser());
+
+  app.get('/', function(req, res){
+    res.type('application/jwt');
+    res.send('jwt.token.sig');
+  });
+
+  app.get('/return', function(req, res){
+    if (req.get('Authorization')) res.send(req.get('Authorization'));
+    else res.send(':(')
+  });
+
+  var agent = request.agent(app);
+
+  it('should save jwt', function(done) {
+    agent
+    .get('/')
+    .expect('Content-Type', 'application/jwt; charset=utf-8')
+    .expect('jwt.token.sig', done);
+  });
+
+  it('should send jwt', function(done) {
+    agent
+    .get('/return')
+    .expect('Bearer jwt.token.sig', done);
   });
 });
 
