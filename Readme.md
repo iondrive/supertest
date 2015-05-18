@@ -1,4 +1,4 @@
-# SuperTest [![Build Status](https://travis-ci.org/visionmedia/supertest.svg?branch=master)](https://travis-ci.org/visionmedia/supertest)
+# SuperTest [![Build Status](https://travis-ci.org/iondrive/supertest.svg?branch=master)](https://travis-ci.org/iondrive/supertest)
 
   HTTP assertions made easy via [super-agent](http://github.com/visionmedia/superagent).
 
@@ -11,10 +11,10 @@
 
   Install SuperTest as an npm module and save it to your package.json file as a development dependency:
   ```
-npm install supertest --save-dev
+npm install @iondrive/supertest --save-dev
   ```
 
-  Once installed it can now be referenced by simply calling ```require("supertest");```
+  Once installed it can now be referenced by simply calling ```require("@iondrive/supertest");```
 
 ## Example
 
@@ -26,7 +26,7 @@ npm install supertest --save-dev
   test framework at all:
 
 ```js
-var request = require('supertest')
+var request = require('@iondrive/supertest')
   , express = require('express');
 
 var app = express();
@@ -110,7 +110,7 @@ request.get('/').expect('heya', function(err){
   Here's an example with mocha that shows how to persist a request and its cookies:
 
 ```js
-var request = require('supertest')
+var request = require('@iondrive/supertest')
    , should = require('should')
    , express = require('express');
 
@@ -144,7 +144,7 @@ describe('request.agent(app)', function(){
   })
 })
 ```
-  There is another example that is introduced by the file [agency.js](https://github.com/visionmedia/superagent/blob/master/test/node/agency.js)
+  There is another example that is introduced by the file [agency.js](https://github.com/iondrive/superagent/blob/master/test/node/agency.js)
 
 ## API
 
