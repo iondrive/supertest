@@ -1,6 +1,6 @@
 {
-  "version": "1.0.1",
   "name": "@iondrive/supertest",
+  "version": "1.0.2",
   "description": "Super-agent driven library for testing HTTP servers, now with JWT and promise support",
   "main": "index.js",
   "scripts": {
